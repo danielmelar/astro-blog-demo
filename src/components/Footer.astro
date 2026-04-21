@@ -1,0 +1,18 @@
+---
+const linkGithub = "https://github.com/danielmelar"
+
+import Social from './Social.astro';
+---
+<style>
+    footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    }
+</style>
+
+<footer>
+    <Social plataform="LinkedIn" url="https://www.linkedin.com/in/danielmeloaguilar/" />
+    <Social plataform="GitHub" url={linkGithub} />
+    <Social plataform="Twitter" url="https://twitter.com/danielmelar" />
+</footer>
