@@ -1,8 +1,5 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "Sobre mim"
 
 const aboutMe = {
@@ -20,32 +17,8 @@ const goal = 3;
 
 const skillColor = "navy";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor}}>
-            h1 {
-                color: purple;
-                font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);;
-                font-weight: bold;
-            }
-        </style>
-
-	</head>
-	<body>
-        <Header />
-
-		<h1>{pageTitle}</h1>
-        <p>Um pouco sobre mim:</p>
+<BaseLayout pageTitle={pageTitle}>
+<p>Um pouco sobre mim:</p>
         <ul>
             <li>Nome: {aboutMe.name}</li>
             <li>Profissão: {aboutMe.occupation}</li>
@@ -61,7 +34,4 @@ const skillColor = "navy";
         {happy && <p>Estou feliz!</p>}
         {finished && <p>Terminei!</p>}
         {goal === 3 ? <p>Minha meta é terminal em 3 dias</p> : <p>Minha meta não é terminal em 3 dias</p>}
-
-        <Footer />
-	</body>
-</html>
+</BaseLayout>

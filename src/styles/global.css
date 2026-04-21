@@ -22,7 +22,22 @@ h1 {
 
 /* estilos da navegação */
 
-.nav-links {
+.hamburguer {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.hamburguer .line {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: #ff9776;
+}
+
+/* estilos da navegação */
+
+/* .nav-links {
   width: 100%;
   top: 5rem;
   left: 48px;
@@ -50,7 +65,7 @@ h1 {
   display: unset;
 }
 
-@media screen and (min-width: 636px) {
+@media screen and (min-width: 600px) {
   .nav-links {
     margin-left: 5em;
     display: block;
@@ -64,4 +79,8 @@ h1 {
     padding: 15px 20px;
   }
 
+} */
+
+.hamburguer {
+    display: none;
 }
