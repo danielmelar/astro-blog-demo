@@ -1,5 +1,22 @@
 ---
+import '../styles/global.css';
 
+const pageTitle = "Sobre mim"
+
+const aboutMe = {
+    name: "Daniel",
+    occupation: "Engenheiro de Software",
+    county: "Brasil",
+    hobbies: ["Leitura", "Tênis", "quebra-cabeças"]
+}
+
+const skills = ["dotnet", "sql", "javascript", "c#"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
 ---
 
 <html lang="en">
@@ -9,14 +26,40 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
+        <style define:vars={{skillColor}}>
+            h1 {
+                color: purple;
+                font-size: 4rem;
+            }
+            .skill {
+                color: var(--skillColor);;
+                font-weight: bold;
+            }
+        </style>
+
 	</head>
 	<body>
         <a href="/" >Inicio</a>
         <a href="/about" >Sobre</a>
         <a href="/blog" >Blog</a>
 
-		<h1>Sobre mim</h1>
-        <p>Um pouco sobre mim</p>
+		<h1>{pageTitle}</h1>
+        <p>Um pouco sobre mim:</p>
+        <ul>
+            <li>Nome: {aboutMe.name}</li>
+            <li>Profissão: {aboutMe.occupation}</li>
+            <li>País: {aboutMe.county}</li>
+            <li>Hobbies: {aboutMe.hobbies.join(", ")}</li>
+        </ul>
+
+        <p>Algumas de minhas habilidades:</p>
+        <ul>
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+
+        {happy && <p>Estou feliz!</p>}
+        {finished && <p>Terminei!</p>}
+        {goal === 3 ? <p>Minha meta é terminal em 3 dias</p> : <p>Minha meta não é terminal em 3 dias</p>}
 	</body>
-</html>``
+</html>
