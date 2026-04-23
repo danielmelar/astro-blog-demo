@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  // 1. Pegamos todos os arquivos markdown
+  const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true })) as any[];
+
+  // 2. Criamos uma lista de tags únicas (conforme o tutorial 5.2)
+  const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+
+  // 3. Mapeamos cada tag para um caminho, passando os posts filtrados como 'props'
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) => post.frontmatter.tags?.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts }, // <--- ESSA LINHA É A CHAVE!
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props; // Agora o 'posts' vai deixar de ser undefined
+---
+<BaseLayout pageTitle={"postagens com a tag: " + tag}>
+  <p>Postagens marcadas com {tag}</p>
+  <ul>
+    {/* Se o 'posts' existir, o .map() vai funcionar */}
+    {posts && posts.map((post) => (
+      <li><a href={post.url}>{post.frontmatter.title}</a></li>
+    ))}
+  </ul>
+</BaseLayout>
