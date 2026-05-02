@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import WorkPreview  from "../components/WorkPreview.astro";
+
+const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true }))
+---
+
+<BaseLayout pageTitle="Trabalhos" baseText="">
+    <div class="work-list">
+        {allWorks.map((work: any) => (
+            <WorkPreview 
+                url={work.url} 
+                title={work.frontmatter.title} 
+                description={work.frontmatter.description} 
+                cover={work.frontmatter.image?.url}
+            />
+        ))}
+    </div>
+
+</BaseLayout>
+
+<style>
+.projects-list {
+    display: flex;
+    flex-direction:row;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+</style>

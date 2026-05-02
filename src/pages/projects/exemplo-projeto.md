@@ -6,7 +6,7 @@ author: Daniel Aguilar
 description: descrição do projeto
 image:
     url: "/src/assets/teclado.png"
-    alt: "nome da imagem"
+    alt: "teclado 4k"
 pubDate: 02-05-2026
 tags: ["exemplo", "de", "tags"]
 ---

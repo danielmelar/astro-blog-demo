@@ -1,18 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
+import ProjectPreview  from "../components/ProjectPreview.astro";
 
-const allPosts = Object.values(import.meta.glob('./projects/*.md', { eager: true }))
+const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }))
 ---
 
-<BaseLayout pageTitle="Projetos" baseText="in progress...">
-    <ul>
-        {allPosts.map((post: any) => (
-                <li>
-                    <a href={`${post.url}/`}>
-                        {post.frontmatter.title}
-                    </a>    
-            </li>
+<BaseLayout pageTitle="Projetos e Trabalhos" baseText="">
+    <div class="projects-list">
+        {allProjects.map((project: any) => (
+            <ProjectPreview 
+                url={project.url} 
+                title={project.frontmatter.title} 
+                description={project.frontmatter.description} 
+                cover={project.frontmatter.image?.url}
+            />
         ))}
-    </ul>
+    </div>
 
 </BaseLayout>
+
+<style>
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+</style>

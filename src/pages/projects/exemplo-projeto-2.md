@@ -5,7 +5,7 @@ title: Mark 42
 author: Daniel Aguilar
 description: Mark 42(eu acho) sentado no sofá
 image:
-    url: "/src/assets/ironmansitting.jpeg"
+    url: /src/assets/ironmansitting.jpeg
     alt: "nome da imagem"
 pubDate: 02-05-2026
 tags: ["exemplo", "de", "tags"]

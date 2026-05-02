@@ -6,14 +6,26 @@ import type { ImageMetadata } from "astro";
 const { frontmatter } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
+const videos = import.meta.glob<{ default: string }>('/src/assets/*.{mp4,webm}', { eager: true });
 
-if (!images[frontmatter.image.url]) {
-    throw new Error(`A imagem "${frontmatter.image.url}" não foi encontrada no projeto!`);
+const coverUrl = frontmatter.image?.url;
+const isVideo = coverUrl && (coverUrl.endsWith('.mp4') || coverUrl.endsWith('.webm'));
+
+if (coverUrl && !isVideo && !images[coverUrl]) {
+    throw new Error(`A imagem "${coverUrl}" não foi encontrada no projeto!`);
+}
+if (coverUrl && isVideo && !videos[coverUrl]) {
+    throw new Error(`O vídeo "${coverUrl}" não foi encontrado no projeto!`);
 }
 ---
 <BaseLayout pageTitle={frontmatter.title}>
     
-    <Image src={images[frontmatter.image.url]()} alt={frontmatter.image.alt} class="cover-image"/>
+    {coverUrl && !isVideo && images[coverUrl] && (
+        <Image src={images[coverUrl]()} alt={frontmatter.image.alt || ''} class="cover-image"/>
+    )}
+    {coverUrl && isVideo && videos[coverUrl] && (
+        <video src={videos[coverUrl].default} autoplay loop muted playsinline class="cover-image"></video>
+    )}
 
     Desenvolvido por {frontmatter.author}
     <br />
@@ -24,16 +36,17 @@ if (!images[frontmatter.image.url]) {
 </BaseLayout>
 
 <style>
-/* .cover-image {
-    width: 100vw;
-    max-width: 100vw;
+.cover-image {
+    width: 100%;
+    /* width: 50vw; */
+    /* max-width: 70vw; */
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    height: 400px;
+    /* height: 400px; */
     object-fit: cover;
     border-radius: 0;
-} */
+}
 
 li {
     display: inline;

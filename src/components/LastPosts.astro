@@ -1,7 +1,28 @@
 ---
 const allPosts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+
+// Função para converter corretamente as datas que estão no formato DD-MM-YYYY ou YYYY-MM-DD
+const parseDate = (dateStr: any) => {
+    if (!dateStr) return new Date(0);
+    const str = String(dateStr);
+    
+    // Suporte para o formato brasileiro: DD-MM-YYYY
+    const parts = str.split('-');
+    if (parts.length === 3 && parts[2].length === 4) {
+        return new Date(`${parts[2]}-${parts[1]}-${parts[0]}T00:00:00`);
+    }
+    
+    // Fallback para YYYY-MM-DD
+    const isoParts = str.split('-');
+    if (isoParts.length === 3 && isoParts[0].length === 4) {
+        return new Date(`${isoParts[0]}-${isoParts[1]}-${isoParts[2]}T00:00:00`);
+    }
+    
+    return new Date(dateStr);
+};
+
 const fiveLastPosts = allPosts
-    .sort((a: any, b: any) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate))
+    .sort((a: any, b: any) => parseDate(b.frontmatter.pubDate).getTime() - parseDate(a.frontmatter.pubDate).getTime())
     .slice(0, 5);
 ---
 <div>

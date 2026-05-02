@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting";
 import LastPosts from "../components/LastPosts.astro"
 import ProjectPreview from "../components/ProjectPreview.astro"
+import WorkPreview from "../components/WorkPreview.astro";
 
 const pageTitle = "Daniel Aguilar"
 ---
@@ -14,5 +15,6 @@ const pageTitle = "Daniel Aguilar"
 
 	<h2>Alguns Projetos e Trabalhos</h2>
 	<ProjectPreview url="exemplo-projeto" title="Projeto de Teste" description="Descrição de Teste" cover="/src/assets/teclado.png"/>
+	<WorkPreview url="atelierjosefamelo" title="Atelier Josefa Melo" description="Site institucional para o Atelier Josefa Melo" cover="/src/assets/atelierjosefamelopreview.mp4" />
 	<ProjectPreview url="exemplo-projeto-2" title="Projeto de Teste 2" description="Mark 42(eu acho) sentado no sofá" cover="/src/assets/ironmansitting.jpeg"/>
 </BaseLayout>
