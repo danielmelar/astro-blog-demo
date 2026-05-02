@@ -1,4 +1,106 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from "astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
+
+const { url, title, description, cover } = Astro.props;
+
+const fullUrl = url.startsWith('/') ? url : `/projects/${url}`;
 ---
-<div>
+<div class="project-card">
+    <a href={fullUrl} class="project-content">
+        <div class="project-info">
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <span class="read-more">Ver projeto &rarr;</span>
+        </div>
+        {cover && images[cover] && (
+            <div class="project-image">
+                <Image src={images[cover]()} alt={title} class="project-thumbnail" />
+            </div>
+        )}
+    </a>
 </div>
+
+<style>
+.project-card {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1rem;
+}
+
+html.dark .project-card {
+    /* background-color: #1a1a1a; */
+    border-color: #ffffff;
+}
+
+/* .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+} */
+
+.project-content {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* .project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+} */
+
+/* .project-image {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    max-width: 300px !important;
+    max-height: 300px !important;
+    object-fit: cover;
+    display: block;
+} */
+
+.project-thumbnail {
+    width: 12rem !important;
+    height: 12rem !important;
+    object-fit: cover;
+    display: block;
+    margin: 0 !important;
+    border-radius: 8px;
+}
+
+/* 
+.project-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.project-info p {
+    margin: 0 0 0.5rem 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+html.dark .project-info p {
+    color: #aaa;
+}
+
+.read-more {
+    font-weight: bold;
+    color: #ff9776;
+    font-size: 0.9rem;
+}
+
+html.dark .read-more {
+    color: #ffcc00;
+} */
+</style>
