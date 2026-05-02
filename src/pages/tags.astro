@@ -4,11 +4,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as any[];
 const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
 
-const pageTitle = "Dani Dani"
+const pageTitle = "Tags"
 ---
 <BaseLayout pageTitle={pageTitle}>
 	<div class="tags">
-		{tags.map((tag) => <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>)}
+		{tags.map((tag) => <li class="tag"><a href={`/tags/${tag}`}>{tag}</a></li>)}
 	</div>
 </BaseLayout>
 <style>
@@ -16,11 +16,11 @@ const pageTitle = "Dani Dani"
 		color: #00539F;
 	}
 
-	.tags {
+	/* .tags {
 		display: flex;
 		flex-wrap: wrap;
-	}
-
+	} */
+/* 
 	.tag {
 		margin: 0.25em;
 		border: dotted 1px #a1a1a1;
@@ -28,5 +28,5 @@ const pageTitle = "Dani Dani"
 		padding: .5em 1em;
 		font-size: 1.15em;
 		background-color: #F8FCFD;
-	}
+	} */
 </style>

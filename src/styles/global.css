@@ -43,15 +43,52 @@ body {
   background-color: #ff9776;
 } */
 
+/* transborda a imagem para fora do body */
+/* .cover-image {
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 400px;
+  object-fit: cover;
+  border-radius: 0;
+} */
+
 /* tema escuro */
 html.dark {
-  background-color: #0d0950;
+  background-color: #000000;
   color: #fff;
 }
 
 .dark .nav-links a {
   color: #fff;
 }
+
+a:link, a:visited {
+  color: blue;
+  text-decoration: underline;
+}
+
+html.dark a:link, 
+html.dark a:visited {
+  color: #ffcc00; /* O amarelo que você escolheu */
+  /* text-decoration: none; */ 
+}
+
+/* :root.dark {
+  --black: 240, 240, 240;
+	--gray: 140, 150, 170;
+	--gray-light: 30, 30, 35;
+	--gray-dark: 200, 210, 220;
+	--gray-gradient: rgba(var(--gray-light), 50%), #000;
+	--bg-color: #000;
+	--text-color: rgb(var(--gray-dark));
+	--heading-color: rgb(var(--black));
+	--header-bg: rgba(0, 0, 0, 0.9);
+	--accent: #8e99ff;
+	--code-bg: #1e1e20;
+} */
 
 /* estilos da navegação */
 

@@ -1,11 +1,31 @@
 ---
+import BaseLayout from "./BaseLayout.astro";
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from "astro";
+
 const { frontmatter } = Astro.props;
 
-import BaseLayout from "./BaseLayout.astro";
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
 
+if (!images[frontmatter.image.url]) {
+    throw new Error(`A imagem "${frontmatter.image.url}" não foi encontrada no projeto!`);
+}
 ---
 <BaseLayout pageTitle={frontmatter.title}>
-    <p>Escrito por {frontmatter.author}</p>
-    <p>Publicado em: {frontmatter.pubDate.toString().slice(0,10)}</p>
+    
+    <Image src={images[frontmatter.image.url]()} alt={frontmatter.image.alt} class="cover-image"/>
+
+    Escrito por {frontmatter.author}
+    <br />
+    Publicado em {frontmatter.pubDate.toString().slice(0,10)}
+    <p>{frontmatter.description}</p>
+    {frontmatter.tags.map((tag: any) => <li>#{tag}</li>)}
     <slot />
 </BaseLayout>
+
+<style>
+li {
+    display: inline;
+    margin-right: 10px
+}
+</style>

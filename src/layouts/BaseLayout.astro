@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const { pageTitle } = Astro.props;
+const { pageTitle, baseText } = Astro.props;
 ---
 
 <html lang="en">
@@ -19,7 +19,7 @@ const { pageTitle } = Astro.props;
 		<Header />
 
 		<h1>{pageTitle}</h1>
-		<p>Bem vindo ao meu blog!</p>
+		<p>{baseText}</p>
         <slot/>
 
 		<Footer />

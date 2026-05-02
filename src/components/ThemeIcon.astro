@@ -18,6 +18,7 @@
   :global(.dark) .sun { fill: transparent; }
   :global(.dark) .moon { fill: white; }
 </style>
+
 <script is:inline>
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -26,7 +27,7 @@
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
-      return 'light';
+    return 'light';
   })();
 
   if (theme === 'light') {
@@ -44,6 +45,12 @@
     const isDark = element.classList.contains("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }
+
+  document.addEventListener('astro:after-swap', () => {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  });
 
   document.getElementById("themeToggle").addEventListener("click", handleToggleClick);
 </script>

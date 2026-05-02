@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "Sobre mim"
+const pageTitle = "Sobre"
 
 const aboutMe = {
     name: "Daniel",
@@ -17,21 +17,5 @@ const goal = 3;
 
 const skillColor = "navy";
 ---
-<BaseLayout pageTitle={pageTitle}>
-<p>Um pouco sobre mim:</p>
-        <ul>
-            <li>Nome: {aboutMe.name}</li>
-            <li>Profissão: {aboutMe.occupation}</li>
-            <li>País: {aboutMe.county}</li>
-            <li>Hobbies: {aboutMe.hobbies.join(", ")}</li>
-        </ul>
-
-        <p>Algumas de minhas habilidades:</p>
-        <ul>
-            {skills.map((skill) => <li class="skill">{skill}</li>)}
-        </ul>
-
-        {happy && <p>Estou feliz!</p>}
-        {finished && <p>Terminei!</p>}
-        {goal === 3 ? <p>Minha meta é terminal em 3 dias</p> : <p>Minha meta não é terminal em 3 dias</p>}
+<BaseLayout pageTitle={pageTitle} baseText="in progress...">
 </BaseLayout>
