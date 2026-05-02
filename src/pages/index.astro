@@ -1,9 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting";
+import LastPosts from "../components/LastPosts.astro"
+import ProjectPreview from "../components/ProjectPreview.astro"
 
 const pageTitle = "Daniel Aguilar"
 ---
 <BaseLayout pageTitle={pageTitle} baseText="in progress...">
 	<!-- <Greeting client:load messages={["Olá", "Hej", "Hallo", "Hola", "Habari"]} /> -->
+
+	<h2>Últimas postagens</h2>
+	<LastPosts />
+
+	<h2>Alguns projetos</h2>
+	<ProjectPreview />
 </BaseLayout>
