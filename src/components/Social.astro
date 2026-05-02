@@ -5,10 +5,8 @@ const { plataform, url } = Astro.props;
 <a href={url}>{plataform}</a>
 
 <style>
-  a {
-    padding: 0.5rem 1rem;
-    color: white;
-    background-color: #4c1d95;
-    text-decoration: none;
+  a:link, a:visited {
+  color: blue;
+  text-decoration: underline;
   }
 </style>

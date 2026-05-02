@@ -1,30 +1,16 @@
 ---
 layout: "../../layouts/PostLayout.astro"
 
-title: Post de exemplo
+title: Post do ano passado!
 author: Daniel Aguilar
-description: descrição da postagem
+description: Uma postagem mais antiga para testar o filtro de ano.
 image:
     url: /src/assets/cover03.jpg
     alt: "nome da imagem"
-pubDate: 02-05-2026
-tags: ["exemplo", "de", "tags"]
+pubDate: 15-08-2025
+tags: ["antigo", "teste"]
 ---
 
-# Primeiro título
+# Um Post Mais Antigo
 
-Esse é um texto de exemplo de post!
-
-## Segundo título
-
-```javascrip
-if (1 > 2)
-    console.log("é maior que 1");
-else
-    console.log("é menor que 1");
-```
-
-Agora apenas uma pequena escrita para ver como fica!
-
-Esse é agora uma imagem no post, veja:
-![imagem de exemplo](/src/assets/498f168747686c62b0c6425204ee9dc6.jpg)
+Esse post foi criado no passado para demonstrar a divisão de posts por ano na página de Blog!
